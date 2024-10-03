@@ -1,0 +1,19 @@
+name: Create PR
+description: |
+    変更したファイルをコミットし、プルリクエストを作成します
+    プルリクエストのタイトルや本文には、コミットメッセージがそのまま利用されます
+inputs:
+    message:
+        required: true
+        description: コミットメッセージ
+outputs:
+    branch:
+        value: ${{ steps.pr.outputs.branch }}
+        description: プルリクエストのブランチ
+runs:
+    using: composite
+    steps:
+        - id: pr
+          shell: bash
+          env:
+            USENAME: github-actions[bot]
